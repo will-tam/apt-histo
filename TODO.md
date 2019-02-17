@@ -1,5 +1,6 @@
-Read TODO inside source.
+Please, also read TODO inside source.
 
-Add some features according options line.
-
-Optimization of code.
+Some ideas :
+  - Add some features display according options line.
+  - D'ont read compressed log. Do it to have a more complete history.
+  - Optimization of code.
