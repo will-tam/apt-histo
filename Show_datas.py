@@ -62,7 +62,9 @@ class Show_datas(Read_histo.Read_histo):
         """
         for file in self.histo_files:
             for data in self.read_for(file):
-                print(data, end='')
+#                print(data, end='')
+                for bloc in self.__reform_apt_histofile(APTHISTOFILE):
+                    pass
 #        for bloc in self.__reform_apt_histofile(APTHISTOFILE):
 #            start_date = bloc["Start-Date"].strip().split("  ")
 #            end_date = bloc["End-Date"].strip().split("  ")
