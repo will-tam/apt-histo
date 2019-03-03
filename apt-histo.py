@@ -2,15 +2,14 @@
 # -*- coding: utf-8 -*-
 
 # Standard library import.
+import argparse
 import sys
 
 # Third-part library import.
 
 # Project library import.
-
-######################
-
-APTHISTOFILE = "/var/log/apt/history.log"
+import Read_histo
+import Show_datas
 
 ######################
 
@@ -89,6 +88,17 @@ def beautify(bloc):
             print("{} ".format(pkg[0]), end="")
         print("")
 
+def show_raw(fd):
+    """
+    Reading (un)compressed history file, and print each line on terminal.
+    @parameters : fd = the file descriptor common.
+    @return : none.
+    """
+    for line in histo.read_as_raw(fd):
+        print(line, end='')
+
+    print("")
+
 def main(arg):
     """
     Main function.
@@ -96,7 +106,17 @@ def main(arg):
     @return : 0 = all was good.
               ... = some problem occures.
     """
-    for bloc in reform_apt_histofile(APTHISTOFILE):
+    show_datas = Show_datas.Show_datas()
+
+#    show_datas.raw()
+
+    show_datas.nice_raw()
+
+#    histo.read_as('start_date')
+
+    return 0
+
+    for bloc in reform_apt_histofile("/var/log/apt/history.log"):
         beautify(bloc)
 
         print("")
