@@ -25,7 +25,6 @@ class Show_datas(Read_histo.Read_histo):
 
 
     # Public methods.
-
     def __init__(self, date=None, end_date=None):
         """
         __init__ : initiate class
@@ -60,38 +59,63 @@ class Show_datas(Read_histo.Read_histo):
         @parameters : none.
         @return : none.
         """
-        for file in self.histo_files:
-            for data in self.read_for(file):
-#                print(data, end='')
-                for bloc in self.__reform_apt_histofile(APTHISTOFILE):
-                    pass
-#        for bloc in self.__reform_apt_histofile(APTHISTOFILE):
-#            start_date = bloc["Start-Date"].strip().split("  ")
-#            end_date = bloc["End-Date"].strip().split("  ")
-#            used_apt_cde = bloc["Commandline"].strip()
-#            what_done = bloc["SubCommands"]
-#            print("Start in {}, at {}".format(start_date[0], start_date[1]))
-#            print("End in {}, at {}".format(end_date[0], end_date[1]))
-#            print("  Done with {}".format(used_apt_cde))
-#            for subcde in prepare_sub_cde(what_done):
-#                print("    {} :".format(subcde[0]))
-#                for pkg in prepare_pkg(subcde[1]):
-#                    # TODO : display according option line.
-#        #            print("\t    {}".format(pkg[0]))
-#                    print("{} ".format(pkg[0]), end="")
-#
-#                print("")
+        for histo_file in self.histo_files:
+            print("In {} :".format(histo_file))
+            for bloc in self.__reform_apt_histofile(histo_file):
+                start_date = bloc["Start-Date"].strip().split("  ")
+                end_date = bloc["End-Date"].strip().split("  ")
+                used_apt_cde = bloc["Commandline"].strip()
+                what_done = bloc["SubCommands"]
+                print(" Start in {}, at {}".format(start_date[0], start_date[1]))
+                print(" End in {}, at {}".format(end_date[0], end_date[1]))
+                print("   Done with {}".format(used_apt_cde))
+                for subcde in self.__prepare_sub_cde(what_done):
+                    print("     {} :".format(subcde[0]))
+                    print("       ", end='')
+                    for pkg in self.__prepare_pkg(subcde[1]):
+                        print("{} ".format(pkg[0]), end="")
+
+                print("\n")
+            print("\n")
 
 
     # Private methods.
+    def __prepare_pkg(self, packages):
+        """
+        Prepare the packages to be displayed as we wish.
+        @parameters : pkgs = packages to prepare to be displayed.
+        @return : list of packages.
+        """
+        pkgs = []
+        for pkg in packages.split("),"):
+            # TODO : find something better. Uggly !!!!!! (Try re module).
+            np = pkg.split(":")[0].strip()
+            arch = pkg.split(":")[1].split(" (")[0]
+            vers = pkg.split(":")[1].split(" (")[1].split(", ")[0]
+            # TODO : try if something other
+    #        other = pkg.split(":")[1].split(" (")[1].split(", ")[1]
 
-    def __reform_apt_histofile(histofile):
+            pkgs.append([np, arch, vers, ])
+
+        return pkgs
+
+    def __prepare_sub_cde(self, subcommands):
+        """
+        Generator to prepare sub commands to be beautifully displayed (huhu).
+        @parameters : subcommands = apt sub-commands to dispaly with packages worked on.
+        @return : the sub command and their packages.
+        """
+        subcdes = sorted(subcommands.keys())
+        for subcde in subcdes:
+            yield [subcde.strip(), subcommands[subcde].strip()]
+
+    def __reform_apt_histofile(self, histofile):
         """
         Reform all apt history file into list of action.
         @parameters : histofile = the whole path of apt history file.
         @return : yield a bloc of apt history as list.
         """
-        for file in self.histo_files:
+        for line in self.read_for(histofile):
             line = line.strip()
             if line:
                 key = line.split(":", 1)[0]
@@ -108,6 +132,8 @@ class Show_datas(Read_histo.Read_histo):
                     subcde = line.strip().split(":", 1)[0]
                     pkg = line.strip().split(":", 1)[1]
                     bloc["SubCommands"][subcde] = pkg
+            else:
+                line = "You should not see me !"
 
 ######################
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-5.1.dtd">
 <!-- eric project file for project apt-histo -->
-<!-- Saved: 2019-03-03, 13:57:11 -->
+<!-- Saved: 2019-03-03, 23:15:56 -->
 <!-- Copyright (C) 2019 Will, will_tam@club-internet.fr -->
 <Project version="5.1">
   <Language></Language>
@@ -13,8 +13,12 @@
   <Email>will_tam@club-internet.fr</Email>
   <Eol index="0"/>
   <Sources>
+    <Source>CHANGELOG.md</Source>
+    <Source>LICENSE.md</Source>
+    <Source>README.md</Source>
     <Source>Read_histo.py</Source>
     <Source>Show_datas.py</Source>
+    <Source>TODO.md</Source>
     <Source>apt-histo.py</Source>
   </Sources>
   <Forms/>

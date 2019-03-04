@@ -31,7 +31,6 @@ class Read_histo():
         # __start_date = compiled regex to search dates.
 
     # Public methods.
-
     def __init__(self):
         """
         __init__ : initiate class
@@ -61,7 +60,6 @@ class Read_histo():
                 fd.close()
 
     # Private methods.
-
     def __spec_sort(self, datas):
         """
         Special sort of files with numbers in name.
