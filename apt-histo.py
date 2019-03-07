@@ -42,30 +42,40 @@ def opt_arg():
                         default=None,
                         help="Display until this date (also use -d option)")
 
+    parser.add_argument("--showdates",
+                        action="store_true",
+                        default=False,
+                        help="Show dates which are be able only")
+
     return parser.parse_args()
 
-def main(arg):
+def main():
     """
     Main function.
-    @parameters : some arguments, in case of use.
+    @parameters : none.
     @return : 0 = all was good.
               ... = some problem occures.
     """
     print("")
     args = opt_arg()
 
-    print(args)
-
     show_datas = Show_datas.Show_datas()
 
     if args.niceraw:
         show_datas.nice_raw()
 
-    elif args.date:
-        print("Date =", args.date)
-        print("To be implementing")
+    elif args.showdates:
+        # TODO: will be implementing.
+        print("Not yet implemented !")
         args.raw = False
-        show_datas.date = args.date
+
+    elif args.date:
+        args.raw = False
+        try:
+            show_datas.date = args.date
+            show_datas.nice_raw_date()
+        except SyntaxError as e:
+            print(e, "\n")
 
     elif args.until:
         print("Date =", args.date)
@@ -79,13 +89,11 @@ def main(arg):
     elif args.raw:
         show_datas.raw()
 
-    print(args)
-
     return 0
 
 ######################
 
 if __name__ == "__main__":
-    rc = main(sys.argv[1:])      # Keep only the argus after the script name.
+    rc = main()
     sys.exit(rc)
 

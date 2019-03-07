@@ -37,8 +37,6 @@ class Show_datas(Read_histo.Read_histo):
 
         super().__init__()
 
-#        print(self.histo_files)
-
     @property
     def date(self):
         """
@@ -52,11 +50,11 @@ class Show_datas(Read_histo.Read_histo):
         @parameters : date = date, or begin date to see.
         @return : none.
         """
-        # TODO: check date's format.
-        if self.__check_date(date):
+        rstr = self.__check_date(date)
+        if not rstr:
             self.__date = date
         else:
-            raise SyntaxError("Format of date miss understanding")
+            raise SyntaxError(rstr)
 
     def raw(self):
         """
@@ -96,17 +94,66 @@ class Show_datas(Read_histo.Read_histo):
                 print("\n")
             print("\n")
 
+    def nice_raw_date(self):
+        """
+        Reading (un)compressed history file, and print each line on terminal within better way for only the date.
+        @parameters : none.
+        @return : none.
+        """
+        found = False
+        for histo_file in self.histo_files:
+            for bloc in self.__reform_apt_histofile(histo_file):
+                start_date = bloc["Start-Date"].strip().split("  ")
+                if self.__date and start_date[0] == self.__date:
+                    found = True
+
+                    print("Found in {} :".format(histo_file))
+
+                    end_date = bloc["End-Date"].strip().split("  ")
+                    used_apt_cde = bloc["Commandline"].strip()
+                    what_done = bloc["SubCommands"]
+                    print(" Start in {}, at {}".format(start_date[0], start_date[1]))
+                    print(" End in {}, at {}".format(end_date[0], end_date[1]))
+                    print("   Done with {}".format(used_apt_cde))
+                    for subcde in self.__prepare_sub_cde(what_done):
+                        print("     {} :".format(subcde[0]))
+                        print("       ", end='')
+                        for pkg in self.__prepare_pkg(subcde[1]):
+                            print("{} ".format(pkg[0]), end="")
+
+        if not found:
+            print("Nothing found in {}".format(self.__date), end='')
+
+        print("\n")
 
     # Private methods.
     def __check_date(self, date):
         """
         Check the given date.setter
         @parameters : date = date to check format.
-        @return : True if date format is ok, everelse False.
+        @return : string empty (all ok), or the problem occured.
         """
-        date_ok = re.split('(\d{4})(-)(\d{2})(-)(\d{2})', "-", date)
-        print(date_ok)
-        return True
+        days_by_month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+
+        date_ok = re.match('^(\d{4})(-)(\d{2})(-)(\d{2})$', date)       # No miss formated date?
+        if not date_ok:
+            return "Please, check date format as YYYY-MM-DD"
+
+        # It was checked about digit or not in regex.
+        year = int(date_ok.group(1))
+        month = int(date_ok.group(3))
+        day = int(date_ok.group(5))
+
+        if month < 1 or month > 12:
+            return "Month is not [01-12]"
+
+        if year % 4 == 0:
+            days_by_month[1] = 29
+
+        if day < 1 or day > days_by_month[month - 1]:
+            return "Day is not [01-{}]".format(days_by_month[month - 1])
+
+        return ""
 
     def __prepare_pkg(self, packages):
         """
@@ -116,11 +163,11 @@ class Show_datas(Read_histo.Read_histo):
         """
         pkgs = []
         for pkg in packages.split("),"):
-            # TODO : find something better. Uggly !!!!!! (Try re module).
+            # TODO: find something better. Uggly !!!!!! (Try re module).
             np = pkg.split(":")[0].strip()
             arch = pkg.split(":")[1].split(" (")[0]
             vers = pkg.split(":")[1].split(" (")[1].split(", ")[0]
-            # TODO : try if something other
+            # TODO: try if something other
     #        other = pkg.split(":")[1].split(" (")[1].split(", ")[1]
 
             pkgs.append([np, arch, vers, ])
