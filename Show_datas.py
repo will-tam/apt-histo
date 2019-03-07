@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 # Standard libraries import.
-
+import re
 
 # Third libraries import.
 
@@ -16,29 +16,47 @@ class Show_datas(Read_histo.Read_histo):
     Show datas as will.
 
     Public attributes.
-        date = date, or begin date to see.
-        end_date = end date to see.
         datas = datas read.
     """
 
     # Private attributes.
+        # __date = date, or begin date to see.
+        # __end_date = end date to see.
 
 
     # Public methods.
-    def __init__(self, date=None, end_date=None):
+    def __init__(self):
         """
         __init__ : initiate class
-        @parameters : date = date, or begin date to see.
-                      end_date = end date to see.
+        @parameters : none.
         @return : none.
         """
-        self.date = date
-        self.end_date = end_date
+        self.__date = None
+        self.__end_date = None
         self.datas = None
 
         super().__init__()
 
 #        print(self.histo_files)
+
+    @property
+    def date(self):
+        """
+        Not used.
+        """
+        pass
+
+    @date.setter
+    def date(self, date):
+        """
+        @parameters : date = date, or begin date to see.
+        @return : none.
+        """
+        # TODO: check date's format.
+        if self.__check_date(date):
+            self.__date = date
+        else:
+            raise SyntaxError("Format of date miss understanding")
 
     def raw(self):
         """
@@ -80,6 +98,16 @@ class Show_datas(Read_histo.Read_histo):
 
 
     # Private methods.
+    def __check_date(self, date):
+        """
+        Check the given date.setter
+        @parameters : date = date to check format.
+        @return : True if date format is ok, everelse False.
+        """
+        date_ok = re.split('(\d{4})(-)(\d{2})(-)(\d{2})', "-", date)
+        print(date_ok)
+        return True
+
     def __prepare_pkg(self, packages):
         """
         Prepare the packages to be displayed as we wish.

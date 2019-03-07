@@ -1,7 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Tasks SYSTEM "Tasks-6.0.dtd">
 <!-- eric6 tasks file for project apt-histo -->
-<!-- Saved: 2019-03-04, 23:19:24 -->
+<!-- Saved: 2019-03-06, 23:31:59 -->
 <Tasks version="6.0">
   <ProjectScanFilter></ProjectScanFilter>
+  <Task priority="1" completed="False" type="1" uid="{842600cd-6367-4f7e-917a-601e80508316}">
+    <Summary>TODO: will be implementing.</Summary>
+    <Description></Description>
+    <Created>2019-03-06, 23:00:28</Created>
+    <Resource>
+      <Filename>apt-histo.py</Filename>
+      <Linenumber>73</Linenumber>
+    </Resource>
+  </Task>
+  <Task priority="1" completed="False" type="1" uid="{1774d643-9ecb-43ce-aad9-00852d6c10f1}">
+    <Summary>TODO: check date's format.</Summary>
+    <Description></Description>
+    <Created>2019-03-06, 23:31:57</Created>
+    <Resource>
+      <Filename>Show_datas.py</Filename>
+      <Linenumber>55</Linenumber>
+    </Resource>
+  </Task>
 </Tasks>
