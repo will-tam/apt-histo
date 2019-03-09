@@ -81,6 +81,7 @@ class Show_datas(Read_histo.Read_histo):
             print("In {} :".format(histo_file))
 
             for bloc in self.__reform_apt_histofile(histo_file):
+                # Separation to be able to manipulate string of date easier, bellow.
                 start_date = bloc["Start-Date"].strip().split("  ")
                 end_date = bloc["End-Date"].strip().split("  ")
                 used_apt_cde = bloc["Commandline"].strip()
@@ -108,10 +109,11 @@ class Show_datas(Read_histo.Read_histo):
         """
         found = False
         print("In {}, found =>\n".format(self.__date))
-        old_histo_file = ""
+        old_histo_file = ""     # Display only one time the filename.
 
         for histo_file in self.histo_files:
             for bloc in self.__reform_apt_histofile(histo_file):
+                # Separation to be able to manipulate string of date easier, bellow.
                 start_date = bloc["Start-Date"].strip().split("  ")
 
                 if self.__date and start_date[0] == self.__date:
@@ -121,6 +123,7 @@ class Show_datas(Read_histo.Read_histo):
                         print("In file {} :".format(histo_file))
                         old_histo_file = histo_file
 
+                    # Separation to be able to manipulate string of date easier, bellow.
                     end_date = bloc["End-Date"].strip().split("  ")
                     used_apt_cde = bloc["Commandline"].strip()
                     what_done = bloc["SubCommands"]
@@ -160,10 +163,13 @@ class Show_datas(Read_histo.Read_histo):
 
 #                if date_ok and date_ok.group(1) not in dates:   # If date is ok and not appear yet.
                 if date_ok:
-                    dates.append(date_ok.group(1))
+                    date = date_ok.group(1)
+                    dates.append((date_ok.group(1), 6))
 
-        for date in dates:
-            print(date)
+        print(dates)
+
+#        for date in dates:
+#            print(date)
 
         print("\n")
 
