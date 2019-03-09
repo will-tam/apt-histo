@@ -2,14 +2,14 @@
 <!DOCTYPE Session SYSTEM "Session-5.0.dtd">
 <!-- eric6 session file for project apt-histo -->
 <!-- This file was generated automatically, do not edit. -->
-<!-- Saved: 2019-03-09, 09:20:26 -->
+<!-- Saved: 2019-03-10, 00:35:59 -->
 <Session version="5.0">
   <Filenames>
-    <Filename cline="67" cindex="0" folds="" zoom="0">/home/will/data/programmation/python/apt-histo/apt-histo.py</Filename>
-    <Filename cline="43" cindex="0" folds="" zoom="0">/home/will/data/programmation/python/apt-histo/Read_histo.py</Filename>
-    <Filename cline="110" cindex="29" folds="" zoom="0">/home/will/data/programmation/python/apt-histo/Show_datas.py</Filename>
+    <Filename cline="164" cindex="30" folds="" zoom="0">/home/will/data/programmation/python/apt-histo/Show_datas.py</Filename>
+    <Filename cline="66" cindex="0" folds="" zoom="0">/home/will/data/programmation/python/apt-histo/Read_histo.py</Filename>
+    <Filename cline="83" cindex="12" folds="" zoom="0">/home/will/data/programmation/python/apt-histo/apt-histo.py</Filename>
   </Filenames>
-  <ActiveWindow cline="110" cindex="29">/home/will/data/programmation/python/apt-histo/Show_datas.py</ActiveWindow>
+  <ActiveWindow cline="66" cindex="0">/home/will/data/programmation/python/apt-histo/Read_histo.py</ActiveWindow>
   <Breakpoints/>
   <Watchexpressions/>
   <DebugInfo>
@@ -29,9 +29,6 @@
     <ProjectBrowserState name="sources">
       <ExpandedItemName>/home/will/data/programmation/python/apt-histo/Read_histo.py</ExpandedItemName>
       <ExpandedItemName>/home/will/data/programmation/python/apt-histo/Read_histo.py@@17</ExpandedItemName>
-      <ExpandedItemName>/home/will/data/programmation/python/apt-histo/Show_datas.py</ExpandedItemName>
-      <ExpandedItemName>/home/will/data/programmation/python/apt-histo/Show_datas.py@@14</ExpandedItemName>
-      <ExpandedItemName>/home/will/data/programmation/python/apt-histo/apt-histo.py</ExpandedItemName>
     </ProjectBrowserState>
     <ProjectBrowserState name="forms"/>
     <ProjectBrowserState name="resources"/>
