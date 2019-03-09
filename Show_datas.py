@@ -38,6 +38,8 @@ class Show_datas(Read_histo.Read_histo):
 
         super().__init__()
 
+    # ++++++++++ Properties
+
     @property
     def date_(self):
         """
@@ -48,6 +50,7 @@ class Show_datas(Read_histo.Read_histo):
     @date_.setter
     def date_(self, date_to_check):
         """
+        Set the date/beginning date. Raise an SyntaxError exception if fail.
         @parameters : date = date, or begin date to see.
         @return : none.
         """
@@ -57,6 +60,37 @@ class Show_datas(Read_histo.Read_histo):
 
         else:
             raise SyntaxError(rstr)
+
+    @property
+    def end_date_(self):
+        """
+        Not used.
+        """
+        pass
+
+    @date_.setter
+    def end_date_(self, date_to_check):
+        """
+        Set the end date. Raise an SyntaxError exception if fail.
+        @parameters : date = date, or begin date to see.
+        @return : none.
+        """
+        rstr = self.__check_date(date_to_check)
+        if not rstr:
+            self.__end_date = date_to_check
+
+        else:
+            raise SyntaxError(rstr)
+
+        startd = dt.datetime.strptime(self.__date, "%Y-%m-%d")
+        stopd = dt.datetime.strptime(self.__end_date, "%Y-%m-%d")
+        # Keep these variables if, one day, i am nice guy, and decide to reverse both dates,
+        # if this case occure : beginning date is after end date.
+
+        if startd > stopd :
+            raise SyntaxError("The end is before the beginning !")
+
+    # ++++++++++
 
     def raw(self):
         """
@@ -93,7 +127,7 @@ class Show_datas(Read_histo.Read_histo):
                 print("\n")
             print("\n")
 
-    def nice_raw_date(self):
+    def nice_raw_one_date(self):
         """
         Reading (un)compressed history file, and print each line on terminal within better way for only the date.
         @parameters : none.
@@ -128,6 +162,51 @@ class Show_datas(Read_histo.Read_histo):
                         self.__print_nice(start_date, end_date, used_apt_cde, what_done, False)
                         print("\n")
 
+    def nice_raw_between_dates(self):
+        """
+        Reading (un)compressed history file, and print each line on terminal within better way
+        between 2 dates.
+        @parameters : none.
+        @return : none.
+        """
+        self.extract_dates()
+
+        print("From {} to {} found :".format(self.__date, self.__end_date), end='')
+
+        if self.__date not in self.extracted_dates:
+            print("\n\nNothing\n")
+
+        else:
+            # Parse to manipulate easely.
+            b_date = dt.datetime.strptime(self.__date, "%Y-%m-%d")
+            e_date = dt.datetime.strptime(self.__end_date, "%Y-%m-%d")
+
+            old_histo_file = ""     # Display only one time the filename.
+            old_date_checked = ""   # Display only if date change.
+
+            for histo_file in self.histo_files:
+                for bloc in self.__reform_apt_histofile(histo_file):
+                    # Separation to be able to manipulate string of date easier, bellow.
+                    start_date = bloc["Start-Date"].strip().split("  ")
+                    r_date = dt.datetime.strptime(start_date[0], "%Y-%m-%d")
+                    if self.__date and r_date >= b_date and r_date < e_date + dt.timedelta(days=1):
+
+                        if histo_file != old_histo_file:
+                            print("\n\nIn file {} :".format(histo_file))
+                            old_histo_file = histo_file
+
+                        if r_date != old_date_checked:
+                            print("In {}, found :\n".format(start_date[0]), end='')
+                            old_date_checked = r_date
+
+                        # Separation to be able to manipulate string of date easier, bellow.
+                        end_date = bloc["End-Date"].strip().split("  ")
+                        used_apt_cde = bloc["Commandline"].strip()
+                        what_done = bloc["SubCommands"]
+
+                        self.__print_nice(start_date, end_date, used_apt_cde, what_done, False)
+                        print("\n")
+
     def only_dates(self):
         """
         Display only the found dates.
@@ -152,6 +231,7 @@ class Show_datas(Read_histo.Read_histo):
                       end_date = end date to display.
                       used_apt_cde = used commands to display.
                       what_done = display what it was done.
+                      display_start_date = False => display only time, everelse date & time.
         @return : none.
         """
         if display_start_date:
@@ -175,13 +255,16 @@ class Show_datas(Read_histo.Read_histo):
         @parameters : date = date to check format.
         @return : string empty (all ok), or the problem occured.
         """
+        # don't uses dt.datetime.strptime(date_to_check, "%Y-%m-%d") exception raising
+        # to check date, need to detail what's wrong. And also i already write this below.
+
         days_by_month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 
         date_ok = re.match('^(\d{4})(-)(\d{2})(-)(\d{2})$', date_to_check)       # No miss formated date?
         if not date_ok:
             return "Please, check date format as YYYY-MM-DD"
 
-        # It was checked about digit or not in regex.
+        # It was checked about digit or not, in regex.
         year = int(date_ok.group(1))
         month = int(date_ok.group(3))
         day = int(date_ok.group(5))
