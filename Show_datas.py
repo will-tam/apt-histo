@@ -107,42 +107,44 @@ class Show_datas(Read_histo.Read_histo):
         @parameters : none.
         @return : none.
         """
-        found = False
-        print("In {}, found =>\n".format(self.__date))
-        old_histo_file = ""     # Display only one time the filename.
+        self.extract_dates()
 
-        for histo_file in self.histo_files:
-            for bloc in self.__reform_apt_histofile(histo_file):
-                # Separation to be able to manipulate string of date easier, bellow.
-                start_date = bloc["Start-Date"].strip().split("  ")
+        print("In {}, found : ".format(self.__date), end='')
 
-                if self.__date and start_date[0] == self.__date:
-                    found = True
+        if self.__date not in self.extracted_dates:
+            print("Nothing\n")
 
-                    if histo_file != old_histo_file:
-                        print("In file {} :".format(histo_file))
-                        old_histo_file = histo_file
+        else:
+            old_histo_file = ""     # Display only one time the filename.
 
+            for histo_file in self.histo_files:
+                for bloc in self.__reform_apt_histofile(histo_file):
                     # Separation to be able to manipulate string of date easier, bellow.
-                    end_date = bloc["End-Date"].strip().split("  ")
-                    used_apt_cde = bloc["Commandline"].strip()
-                    what_done = bloc["SubCommands"]
+                    start_date = bloc["Start-Date"].strip().split("  ")
 
-                    print(" Start at {}".format(start_date[1]))
-                    print(" End in {}, at {}".format(end_date[0], end_date[1]))
-                    print("   Done with {}".format(used_apt_cde))
+                    if self.__date and start_date[0] == self.__date:
 
-                    for subcde in self.__prepare_sub_cde(what_done):
-                        print("     {} :".format(subcde[0]))
-                        print("       ", end='')
+                        if histo_file != old_histo_file:
+                            print("\n\nIn file {} :".format(histo_file))
+                            old_histo_file = histo_file
 
-                        for pkg in self.__prepare_pkg(subcde[1]):
-                            print("{} ".format(pkg[0]), end="")
+                        # Separation to be able to manipulate string of date easier, bellow.
+                        end_date = bloc["End-Date"].strip().split("  ")
+                        used_apt_cde = bloc["Commandline"].strip()
+                        what_done = bloc["SubCommands"]
 
-                        print("\n")
+                        print(" Start at {}".format(start_date[1]))
+                        print(" End in {}, at {}".format(end_date[0], end_date[1]))
+                        print("   Done with {}".format(used_apt_cde))
 
-        if not found:
-            print("Nothing found in {}\n".format(self.__date))
+                        for subcde in self.__prepare_sub_cde(what_done):
+                            print("     {} :".format(subcde[0]))
+                            print("       ", end='')
+
+                            for pkg in self.__prepare_pkg(subcde[1]):
+                                print("{} ".format(pkg[0]), end="")
+
+                            print("\n")
 
     def only_dates(self):
         """
@@ -150,28 +152,14 @@ class Show_datas(Read_histo.Read_histo):
         @parameters : none.
         @return : none.
         """
-        date_is = re.compile("Start-Date:\s(\d{4}-\d{2}-\d{2})?")    # Someting as 'Start-Date: 2019-03-03  11:24:00'.
-
-        dates=[]
-
         print("Dates found :")
-        for histo_file in self.histo_files:
-#            print("{} {}".format(4*"-", histo_file))
 
-            for data in self.read_for(histo_file):
-                date_ok = date_is.match(data)
+        self.extract_dates()
 
-#                if date_ok and date_ok.group(1) not in dates:   # If date is ok and not appear yet.
-                if date_ok:
-                    date = date_ok.group(1)
-                    dates.append((date_ok.group(1), 6))
+        for date in self.extracted_dates:
+            print(date)
 
-        print(dates)
-
-#        for date in dates:
-#            print(date)
-
-        print("\n")
+        print("\n", end='')
 
 
     # Private methods.

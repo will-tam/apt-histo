@@ -1,52 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Tasks SYSTEM "Tasks-6.0.dtd">
 <!-- eric6 tasks file for project apt-histo -->
-<!-- Saved: 2019-03-09, 09:04:23 -->
+<!-- Saved: 2019-03-09, 09:47:11 -->
 <Tasks version="6.0">
   <ProjectScanFilter></ProjectScanFilter>
-  <Task priority="1" completed="False" type="1" uid="{f517a55e-70ff-4b2c-8e57-fcd9e7008aa3}">
+  <Task priority="1" completed="False" type="1" uid="{ead984cc-8145-4d9a-8dc0-d2e9ac78a250}">
     <Summary>TODO: check if not in future.</Summary>
     <Description></Description>
-    <Created>2019-03-08, 22:09:52</Created>
+    <Created>2019-03-09, 09:20:40</Created>
     <Resource>
       <Filename>apt-histo.py</Filename>
       <Linenumber>75</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{930eba8e-05f0-4e38-9b01-1232fdc4a9e0}">
+  <Task priority="1" completed="False" type="1" uid="{7503eef7-9aa2-4904-b9cb-7026ab28212a}">
     <Summary>TODO: check if not in future for the both.</Summary>
     <Description></Description>
-    <Created>2019-03-08, 22:09:52</Created>
+    <Created>2019-03-09, 09:20:40</Created>
     <Resource>
       <Filename>apt-histo.py</Filename>
       <Linenumber>90</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{02d62eff-8029-4fb6-8f37-098c0031f419}">
+  <Task priority="1" completed="False" type="1" uid="{0a4406ba-ce1e-495c-b5d1-1b19504f9b5e}">
     <Summary>TODO: check if date &lt; until</Summary>
     <Description></Description>
-    <Created>2019-03-08, 22:09:52</Created>
+    <Created>2019-03-09, 09:20:40</Created>
     <Resource>
       <Filename>apt-histo.py</Filename>
       <Linenumber>92</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{e7eb6f34-dae5-4a2f-b36e-57cd0e1cd8bb}">
+  <Task priority="1" completed="False" type="1" uid="{76f93ef9-8a88-4d2a-909d-8915980a64f0}">
     <Summary>TODO: find something better. Uggly !!!!!! (Try re module).</Summary>
     <Description></Description>
-    <Created>2019-03-09, 09:04:20</Created>
+    <Created>2019-03-09, 09:47:07</Created>
     <Resource>
       <Filename>Show_datas.py</Filename>
-      <Linenumber>215</Linenumber>
+      <Linenumber>203</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{dd69c34e-99e1-4db5-a76e-4273b9c62914}">
+  <Task priority="1" completed="False" type="1" uid="{4c35f38a-2ee0-4f40-8f37-5b7a2add3f70}">
     <Summary>TODO: try if something other</Summary>
     <Description></Description>
-    <Created>2019-03-09, 09:04:20</Created>
+    <Created>2019-03-09, 09:47:07</Created>
     <Resource>
       <Filename>Show_datas.py</Filename>
-      <Linenumber>219</Linenumber>
+      <Linenumber>207</Linenumber>
     </Resource>
   </Task>
 </Tasks>

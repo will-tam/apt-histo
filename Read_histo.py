@@ -16,11 +16,11 @@ import re
 
 class Read_histo():
     """
-    Read in APTHISTOFILE the history.log[.*.gz] files and keep it
-    in some dictionnary.
+    Read in APTHISTOFILE the history.log[.*.gz] files.
 
     Public attributes.
         histo_files = list of history files in APTHISTOFILE.
+        extracted_dates = the dates list which are extracted. Only this shouldn't fill memory too much ^^<.
     """
 
     APTHISTOFILE = "/var/log/apt/history.log*"  # Don't care about os.pathsep, here we speak about Debian like distro.
@@ -36,6 +36,7 @@ class Read_histo():
         @return : none.
         """
         self.histo_files = self.__spec_sort(glob.glob(Read_histo.APTHISTOFILE))
+#        self.extracted_dates = [] in extract_dates()
 
     def read_for(self, file):
         """
@@ -53,6 +54,25 @@ class Read_histo():
                 for data in fd:
                     yield data
                 fd.close()
+
+    def extract_dates(self):
+        """
+        Extract the dates in apt history files.
+        @parameters : None.
+        @result : extracted dates.
+        """
+        date_is = re.compile("Start-Date:\s(\d{4}-\d{2}-\d{2})?")    # Someting as 'Start-Date: 2019-03-03  11:24:00'.
+
+        self.extracted_dates = []
+
+        for histo_file in self.histo_files:
+
+            for data in self.read_for(histo_file):
+                date_ok = date_is.match(data)
+
+                if date_ok and date_ok.group(1) not in self.extracted_dates:   # If date is ok and not appear yet.
+                    self.extracted_dates.append(date_ok.group(1))
+
 
     # Private methods.
     def __spec_sort(self, datas):
