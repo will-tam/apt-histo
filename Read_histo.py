@@ -4,7 +4,7 @@
 import glob
 import gzip
 import re
-import collections
+#import collections
 
 # Third libraries import.
 
@@ -24,10 +24,8 @@ class Read_histo():
     """
 
     APTHISTOFILE = "/var/log/apt/history.log*"  # Don't care about os.pathsep, here we speak about Debian like distro.
-    START_DATE = "Start-Date: "
 
     # Private attributes.
-        # __apt_histo = ordered dictionnary of date -> fichier where to find this date.
         # __start_date = compiled regex to search dates.
 
     # Public methods.
@@ -38,9 +36,6 @@ class Read_histo():
         @return : none.
         """
         self.histo_files = self.__spec_sort(glob.glob(Read_histo.APTHISTOFILE))
-
-        self.__apt_histo = collections.OrderedDict()
-        self.__start_date = re.compile(Read_histo.START_DATE)
 
     def read_for(self, file):
         """

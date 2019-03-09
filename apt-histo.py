@@ -65,25 +65,32 @@ def main():
         show_datas.nice_raw()
 
     elif args.showdates:
-        # TODO: will be implementing.
-        print("Not yet implemented !")
+        show_datas.only_dates()
         args.raw = False
 
-    elif args.date:
+    elif args.date and not args.until:
         args.raw = False
         try:
             show_datas.date = args.date
+            # TODO: check if not in future.
+
             show_datas.nice_raw_date()
         except SyntaxError as e:
             print(e, "\n")
 
     elif args.until:
+        if not args.date:
+            print("Beginning date missing. Use --date or -d\n")
+            return 1
         print("Date =", args.date)
         print("Until =", args.until)
-        # TODO: will be implementing.
         args.raw = False
         show_datas.date = args.date
         show_datas.end_date = args.until
+        # TODO: check if not in future for the both.
+
+        # TODO: check if date < until
+
         print("Will be implementing")
 
     elif args.raw:

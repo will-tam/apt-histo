@@ -53,6 +53,7 @@ class Show_datas(Read_histo.Read_histo):
         rstr = self.__check_date(date)
         if not rstr:
             self.__date = date
+
         else:
             raise SyntaxError(rstr)
 
@@ -62,9 +63,10 @@ class Show_datas(Read_histo.Read_histo):
         @parameters : none.
         @return : none.
         """
-        for file in self.histo_files:
-            print("{} {}".format(4*"-", file))
-            for data in self.read_for(file):
+        for histo_file in self.histo_files:
+            print("{} {}".format(4*"-", histo_file))
+
+            for data in self.read_for(histo_file):
                 print(data, end='')
 
             print("")
@@ -77,17 +79,21 @@ class Show_datas(Read_histo.Read_histo):
         """
         for histo_file in self.histo_files:
             print("In {} :".format(histo_file))
+
             for bloc in self.__reform_apt_histofile(histo_file):
                 start_date = bloc["Start-Date"].strip().split("  ")
                 end_date = bloc["End-Date"].strip().split("  ")
                 used_apt_cde = bloc["Commandline"].strip()
                 what_done = bloc["SubCommands"]
+
                 print(" Start in {}, at {}".format(start_date[0], start_date[1]))
                 print(" End in {}, at {}".format(end_date[0], end_date[1]))
                 print("   Done with {}".format(used_apt_cde))
+
                 for subcde in self.__prepare_sub_cde(what_done):
                     print("     {} :".format(subcde[0]))
                     print("       ", end='')
+
                     for pkg in self.__prepare_pkg(subcde[1]):
                         print("{} ".format(pkg[0]), end="")
 
@@ -101,30 +107,66 @@ class Show_datas(Read_histo.Read_histo):
         @return : none.
         """
         found = False
+        print("In {}, found =>\n".format(self.__date))
+        old_histo_file = ""
+
         for histo_file in self.histo_files:
             for bloc in self.__reform_apt_histofile(histo_file):
                 start_date = bloc["Start-Date"].strip().split("  ")
+
                 if self.__date and start_date[0] == self.__date:
                     found = True
 
-                    print("Found in {} :".format(histo_file))
+                    if histo_file != old_histo_file:
+                        print("In file {} :".format(histo_file))
+                        old_histo_file = histo_file
 
                     end_date = bloc["End-Date"].strip().split("  ")
                     used_apt_cde = bloc["Commandline"].strip()
                     what_done = bloc["SubCommands"]
-                    print(" Start in {}, at {}".format(start_date[0], start_date[1]))
+
+                    print(" Start at {}".format(start_date[1]))
                     print(" End in {}, at {}".format(end_date[0], end_date[1]))
                     print("   Done with {}".format(used_apt_cde))
+
                     for subcde in self.__prepare_sub_cde(what_done):
                         print("     {} :".format(subcde[0]))
                         print("       ", end='')
+
                         for pkg in self.__prepare_pkg(subcde[1]):
                             print("{} ".format(pkg[0]), end="")
 
+                        print("\n")
+
         if not found:
-            print("Nothing found in {}".format(self.__date), end='')
+            print("Nothing found in {}\n".format(self.__date))
+
+    def only_dates(self):
+        """
+        Display only the found dates.
+        @parameters : none.
+        @return : none.
+        """
+        date_is = re.compile("Start-Date:\s(\d{4}-\d{2}-\d{2})?")    # Someting as 'Start-Date: 2019-03-03  11:24:00'.
+
+        dates=[]
+
+        print("Dates found :")
+        for histo_file in self.histo_files:
+#            print("{} {}".format(4*"-", histo_file))
+
+            for data in self.read_for(histo_file):
+                date_ok = date_is.match(data)
+
+#                if date_ok and date_ok.group(1) not in dates:   # If date is ok and not appear yet.
+                if date_ok:
+                    dates.append(date_ok.group(1))
+
+        for date in dates:
+            print(date)
 
         print("\n")
+
 
     # Private methods.
     def __check_date(self, date):
@@ -162,6 +204,7 @@ class Show_datas(Read_histo.Read_histo):
         @return : list of packages.
         """
         pkgs = []
+
         for pkg in packages.split("),"):
             # TODO: find something better. Uggly !!!!!! (Try re module).
             np = pkg.split(":")[0].strip()
@@ -181,6 +224,7 @@ class Show_datas(Read_histo.Read_histo):
         @return : the sub command and their packages.
         """
         subcdes = sorted(subcommands.keys())
+
         for subcde in subcdes:
             yield [subcde.strip(), subcommands[subcde].strip()]
 
@@ -192,21 +236,27 @@ class Show_datas(Read_histo.Read_histo):
         """
         for line in self.read_for(histofile):
             line = line.strip()
+
             if line:
                 key = line.split(":", 1)[0]
                 value = line.split(":", 1)[1]
+
                 if line.find("Start-Date") > -1:
                     bloc = {"SubCommands" : {}}
                     bloc[key] = value
+
                 elif line.find("End-Date") > -1:
                     bloc[key] = value
                     yield bloc
+
                 elif line.find("Commandline") > -1:
                     bloc[key] = value
+
                 else:
                     subcde = line.strip().split(":", 1)[0]
                     pkg = line.strip().split(":", 1)[1]
                     bloc["SubCommands"][subcde] = pkg
+
             else:
                 line = "You should not see me !"
 

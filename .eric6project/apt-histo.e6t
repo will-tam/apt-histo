@@ -1,43 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Tasks SYSTEM "Tasks-6.0.dtd">
 <!-- eric6 tasks file for project apt-histo -->
-<!-- Saved: 2019-03-07, 23:39:28 -->
+<!-- Saved: 2019-03-09, 08:57:06 -->
 <Tasks version="6.0">
   <ProjectScanFilter></ProjectScanFilter>
-  <Task priority="1" completed="False" type="1" uid="{121c38be-29fc-4953-aaf5-0683c1d94bad}">
+  <Task priority="1" completed="False" type="1" uid="{f517a55e-70ff-4b2c-8e57-fcd9e7008aa3}">
+    <Summary>TODO: check if not in future.</Summary>
+    <Description></Description>
+    <Created>2019-03-08, 22:09:52</Created>
+    <Resource>
+      <Filename>apt-histo.py</Filename>
+      <Linenumber>75</Linenumber>
+    </Resource>
+  </Task>
+  <Task priority="1" completed="False" type="1" uid="{930eba8e-05f0-4e38-9b01-1232fdc4a9e0}">
+    <Summary>TODO: check if not in future for the both.</Summary>
+    <Description></Description>
+    <Created>2019-03-08, 22:09:52</Created>
+    <Resource>
+      <Filename>apt-histo.py</Filename>
+      <Linenumber>90</Linenumber>
+    </Resource>
+  </Task>
+  <Task priority="1" completed="False" type="1" uid="{02d62eff-8029-4fb6-8f37-098c0031f419}">
+    <Summary>TODO: check if date &lt; until</Summary>
+    <Description></Description>
+    <Created>2019-03-08, 22:09:52</Created>
+    <Resource>
+      <Filename>apt-histo.py</Filename>
+      <Linenumber>92</Linenumber>
+    </Resource>
+  </Task>
+  <Task priority="1" completed="False" type="1" uid="{cd1c95e2-b15c-46c0-8b90-a4d2f28c104a}">
     <Summary>TODO: find something better. Uggly !!!!!! (Try re module).</Summary>
     <Description></Description>
-    <Created>2019-03-07, 23:30:00</Created>
+    <Created>2019-03-09, 08:57:03</Created>
     <Resource>
       <Filename>Show_datas.py</Filename>
-      <Linenumber>166</Linenumber>
+      <Linenumber>209</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{d6d3a923-ac6b-4474-8b9d-927cda7fdca4}">
+  <Task priority="1" completed="False" type="1" uid="{a1c87940-65c7-4be8-8eee-77ea51021a27}">
     <Summary>TODO: try if something other</Summary>
     <Description></Description>
-    <Created>2019-03-07, 23:30:00</Created>
+    <Created>2019-03-09, 08:57:03</Created>
     <Resource>
       <Filename>Show_datas.py</Filename>
-      <Linenumber>170</Linenumber>
-    </Resource>
-  </Task>
-  <Task priority="1" completed="False" type="1" uid="{95e27674-39d2-437c-b083-7011c0e00471}">
-    <Summary>TODO: will be implementing.</Summary>
-    <Description></Description>
-    <Created>2019-03-07, 23:39:25</Created>
-    <Resource>
-      <Filename>apt-histo.py</Filename>
-      <Linenumber>68</Linenumber>
-    </Resource>
-  </Task>
-  <Task priority="1" completed="False" type="1" uid="{30a09d95-8459-454a-80e4-57fb7232224b}">
-    <Summary>TODO: will be implementing.</Summary>
-    <Description></Description>
-    <Created>2019-03-07, 23:39:25</Created>
-    <Resource>
-      <Filename>apt-histo.py</Filename>
-      <Linenumber>83</Linenumber>
+      <Linenumber>213</Linenumber>
     </Resource>
   </Task>
 </Tasks>
