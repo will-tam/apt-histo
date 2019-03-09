@@ -87,16 +87,7 @@ class Show_datas(Read_histo.Read_histo):
                 used_apt_cde = bloc["Commandline"].strip()
                 what_done = bloc["SubCommands"]
 
-                print(" Start in {}, at {}".format(start_date[0], start_date[1]))
-                print(" End in {}, at {}".format(end_date[0], end_date[1]))
-                print("   Done with {}".format(used_apt_cde))
-
-                for subcde in self.__prepare_sub_cde(what_done):
-                    print("     {} :".format(subcde[0]))
-                    print("       ", end='')
-
-                    for pkg in self.__prepare_pkg(subcde[1]):
-                        print("{} ".format(pkg[0]), end="")
+                self.__print_nice(start_date, end_date, used_apt_cde, what_done, True)
 
                 print("\n")
             print("\n")
@@ -133,18 +124,8 @@ class Show_datas(Read_histo.Read_histo):
                         used_apt_cde = bloc["Commandline"].strip()
                         what_done = bloc["SubCommands"]
 
-                        print(" Start at {}".format(start_date[1]))
-                        print(" End in {}, at {}".format(end_date[0], end_date[1]))
-                        print("   Done with {}".format(used_apt_cde))
-
-                        for subcde in self.__prepare_sub_cde(what_done):
-                            print("     {} :".format(subcde[0]))
-                            print("       ", end='')
-
-                            for pkg in self.__prepare_pkg(subcde[1]):
-                                print("{} ".format(pkg[0]), end="")
-
-                            print("\n")
+                        self.__print_nice(start_date, end_date, used_apt_cde, what_done, False)
+                        print("\n")
 
     def only_dates(self):
         """
@@ -163,6 +144,30 @@ class Show_datas(Read_histo.Read_histo):
 
 
     # Private methods.
+    def __print_nice(self, start_date, end_date, used_apt_cde, what_done, display_start_date):
+        """
+        Display in a "nice" way.
+        @parameters : start_date = start date to display.
+                      end_date = end date to display.
+                      used_apt_cde = used commands to display.
+                      what_done = display what it was done.
+        @return : none.
+        """
+        if display_start_date:
+            print(" Start in {}, at {}".format(start_date[0], start_date[1]))
+        else:
+            print(" Start at {}".format(start_date[1]))
+
+        print(" End in {}, at {}".format(end_date[0], end_date[1]))
+        print("   Done with {}".format(used_apt_cde))
+
+        for subcde in self.__prepare_sub_cde(what_done):
+            print("     {} :".format(subcde[0]))
+            print("       ", end='')
+
+            for pkg in self.__prepare_pkg(subcde[1]):
+                print("{} ".format(pkg[0]), end="")
+
     def __check_date(self, date):
         """
         Check the given date.setter

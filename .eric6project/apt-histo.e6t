@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Tasks SYSTEM "Tasks-6.0.dtd">
 <!-- eric6 tasks file for project apt-histo -->
-<!-- Saved: 2019-03-09, 09:47:11 -->
+<!-- Saved: 2019-03-09, 10:03:23 -->
 <Tasks version="6.0">
   <ProjectScanFilter></ProjectScanFilter>
   <Task priority="1" completed="False" type="1" uid="{ead984cc-8145-4d9a-8dc0-d2e9ac78a250}">
@@ -31,22 +31,22 @@
       <Linenumber>92</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{76f93ef9-8a88-4d2a-909d-8915980a64f0}">
+  <Task priority="1" completed="False" type="1" uid="{01432d34-b9c6-45cd-b1b9-a340e8b5573d}">
     <Summary>TODO: find something better. Uggly !!!!!! (Try re module).</Summary>
     <Description></Description>
-    <Created>2019-03-09, 09:47:07</Created>
+    <Created>2019-03-09, 10:03:20</Created>
     <Resource>
       <Filename>Show_datas.py</Filename>
-      <Linenumber>203</Linenumber>
+      <Linenumber>208</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{4c35f38a-2ee0-4f40-8f37-5b7a2add3f70}">
+  <Task priority="1" completed="False" type="1" uid="{d0671fc6-7253-4043-85eb-b4d42fa14a24}">
     <Summary>TODO: try if something other</Summary>
     <Description></Description>
-    <Created>2019-03-09, 09:47:07</Created>
+    <Created>2019-03-09, 10:03:20</Created>
     <Resource>
       <Filename>Show_datas.py</Filename>
-      <Linenumber>207</Linenumber>
+      <Linenumber>212</Linenumber>
     </Resource>
   </Task>
 </Tasks>
