@@ -71,7 +71,7 @@ def main():
     elif args.date and not args.until:
         args.raw = False
         try:
-            show_datas.date = args.date
+            show_datas.date_ = args.date
             # TODO: check if not in future.
 
             show_datas.nice_raw_date()
@@ -85,7 +85,7 @@ def main():
         print("Date =", args.date)
         print("Until =", args.until)
         args.raw = False
-        show_datas.date = args.date
+        show_datas.date_ = args.date
         show_datas.end_date = args.until
         # TODO: check if not in future for the both.
 

@@ -2,6 +2,7 @@
 
 # Standard libraries import.
 import re
+import datetime as dt
 
 # Third libraries import.
 
@@ -38,21 +39,21 @@ class Show_datas(Read_histo.Read_histo):
         super().__init__()
 
     @property
-    def date(self):
+    def date_(self):
         """
         Not used.
         """
         pass
 
-    @date.setter
-    def date(self, date):
+    @date_.setter
+    def date_(self, date_to_check):
         """
         @parameters : date = date, or begin date to see.
         @return : none.
         """
-        rstr = self.__check_date(date)
+        rstr = self.__check_date(date_to_check)
         if not rstr:
-            self.__date = date
+            self.__date = date_to_check
 
         else:
             raise SyntaxError(rstr)
@@ -137,8 +138,8 @@ class Show_datas(Read_histo.Read_histo):
 
         self.extract_dates()
 
-        for date in self.extracted_dates:
-            print(date)
+        for extracted_date in self.extracted_dates:
+            print(extracted_date)
 
         print("\n", end='')
 
@@ -168,7 +169,7 @@ class Show_datas(Read_histo.Read_histo):
             for pkg in self.__prepare_pkg(subcde[1]):
                 print("{} ".format(pkg[0]), end="")
 
-    def __check_date(self, date):
+    def __check_date(self, date_to_check):
         """
         Check the given date.setter
         @parameters : date = date to check format.
@@ -176,7 +177,7 @@ class Show_datas(Read_histo.Read_histo):
         """
         days_by_month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 
-        date_ok = re.match('^(\d{4})(-)(\d{2})(-)(\d{2})$', date)       # No miss formated date?
+        date_ok = re.match('^(\d{4})(-)(\d{2})(-)(\d{2})$', date_to_check)       # No miss formated date?
         if not date_ok:
             return "Please, check date format as YYYY-MM-DD"
 
@@ -193,6 +194,9 @@ class Show_datas(Read_histo.Read_histo):
 
         if day < 1 or day > days_by_month[month - 1]:
             return "Day is not [01-{}]".format(days_by_month[month - 1])
+
+        if dt.date.today() < dt.date(year, month, day) :
+            return "Can't read the Future !"
 
         return ""
 
