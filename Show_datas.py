@@ -349,4 +349,4 @@ class Show_datas(Read_histo.Read_histo):
 ######################
 
 if __name__ == "__main__":
-    help(My_class)
+    help(Show_datas)
