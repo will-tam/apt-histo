@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Tasks SYSTEM "Tasks-6.0.dtd">
 <!-- eric6 tasks file for project apt-histo -->
-<!-- Saved: 2019-03-10, 00:35:59 -->
+<!-- Saved: 2019-03-10, 11:25:17 -->
 <Tasks version="6.0">
   <ProjectScanFilter></ProjectScanFilter>
-  <Task priority="1" completed="False" type="1" uid="{6c2bb7e8-5418-4269-917d-b6dcb0db34f8}">
+  <Task priority="1" completed="False" type="1" uid="{a617dcb5-55ad-47f1-a882-9b43d152a932}">
     <Summary>TODO: find something better. Uggly !!!!!! (Try re module).</Summary>
     <Description></Description>
-    <Created>2019-03-10, 00:10:23</Created>
+    <Created>2019-03-10, 11:24:59</Created>
     <Resource>
       <Filename>Show_datas.py</Filename>
       <Linenumber>295</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{98c1b22d-a365-46ee-85ba-66d8df9d894f}">
+  <Task priority="1" completed="False" type="1" uid="{ba607996-ae34-4f36-91bb-7df7f3ec090e}">
     <Summary>TODO: try if something other</Summary>
     <Description></Description>
-    <Created>2019-03-10, 00:10:23</Created>
+    <Created>2019-03-10, 11:24:59</Created>
     <Resource>
       <Filename>Show_datas.py</Filename>
       <Linenumber>299</Linenumber>
