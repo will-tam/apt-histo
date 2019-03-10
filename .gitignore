@@ -3,4 +3,6 @@
 *.*~
 *~
 __pycache__
-
+apt_histo.egg-info
+build
+dist
