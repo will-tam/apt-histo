@@ -156,7 +156,8 @@ class Show_datas(Read_histo.Read_histo):
 
                         # Separation to be able to manipulate string of date easier, bellow.
                         end_date = bloc["End-Date"].strip().split("  ")
-                        used_apt_cde = bloc["Commandline"].strip()
+#                        used_apt_cde = bloc["Commandline"].strip()
+                        used_apt_cde = bloc.get("Commandline", " : nothing done !").strip()
                         what_done = bloc["SubCommands"]
 
                         self.__print_nice(start_date, end_date, used_apt_cde, what_done, False)
@@ -201,7 +202,8 @@ class Show_datas(Read_histo.Read_histo):
 
                         # Separation to be able to manipulate string of date easier, bellow.
                         end_date = bloc["End-Date"].strip().split("  ")
-                        used_apt_cde = bloc["Commandline"].strip()
+#                        used_apt_cde = bloc["Commandline"].strip()
+                        used_apt_cde = bloc.get("Commandline", " : nothing done !").strip()
                         what_done = bloc["SubCommands"]
 
                         self.__print_nice(start_date, end_date, used_apt_cde, what_done, False)
@@ -224,6 +226,7 @@ class Show_datas(Read_histo.Read_histo):
 
 
     # Private methods.
+
     def __print_nice(self, start_date, end_date, used_apt_cde, what_done, display_start_date):
         """
         Display in a "nice" way.
@@ -248,6 +251,8 @@ class Show_datas(Read_histo.Read_histo):
 
             for pkg in self.__prepare_pkg(subcde[1]):
                 print("{} ".format(pkg[0]), end="")
+
+            print("")
 
     def __check_date(self, date_to_check):
         """
@@ -320,6 +325,27 @@ class Show_datas(Read_histo.Read_histo):
         @parameters : histofile = the whole path of apt history file.
         @return : yield a bloc of apt history as list.
         """
+        # Prepare dictionnary with mandatories keys.
+        bloc = {
+            "Start-Date" : "",
+            "End-Date" : "",
+            "Commandline" : "",
+            "SubCommands" : {},
+        }
+
+        # Available subcommands.
+        available_subcde = [
+            "Install",
+            "Reinstall",
+            "Remove",
+            "Purge",
+            "Autoremove",
+            "Update",
+            "Upgrade",
+            "Full-upgrade",
+            "Dist-upgrade",
+        ]
+
         for line in self.read_for(histofile):
             line = line.strip()
 
@@ -327,15 +353,7 @@ class Show_datas(Read_histo.Read_histo):
                 key = line.split(":", 1)[0]
                 value = line.split(":", 1)[1]
 
-                if line.find("Start-Date") > -1:
-                    bloc = {"SubCommands" : {}}
-                    bloc[key] = value
-
-                elif line.find("End-Date") > -1:
-                    bloc[key] = value
-                    yield bloc
-
-                elif line.find("Commandline") > -1:
+                if key not in available_subcde:
                     bloc[key] = value
 
                 else:
@@ -343,8 +361,12 @@ class Show_datas(Read_histo.Read_histo):
                     pkg = line.strip().split(":", 1)[1]
                     bloc["SubCommands"][subcde] = pkg
 
+                if key == "End-Date":
+                    yield bloc
+
             else:
                 line = "You should not see me !"
+
 
 ######################
 
