@@ -1,43 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Tasks SYSTEM "Tasks-6.0.dtd">
 <!-- eric6 tasks file for project apt-histo -->
-<!-- Saved: 2019-03-12, 20:48:38 -->
+<!-- Saved: 2020-12-19, 22:36:34 -->
 <Tasks version="6.0">
   <ProjectScanFilter></ProjectScanFilter>
-  <Task priority="1" completed="False" type="1" uid="{f33d06e6-3fb3-42bb-8e10-636fb54e51be}">
+  <Task priority="1" completed="False" type="1" uid="{a1921a28-5df3-45fe-9218-8d4dfaead74c}">
     <Summary>TODO: find something better. Uggly !!!!!! (Try re module).</Summary>
     <Description></Description>
-    <Created>2019-03-12, 20:27:52</Created>
+    <Created>2020-12-19, 22:34:02</Created>
     <Resource>
       <Filename>Show_datas.py</Filename>
-      <Linenumber>295</Linenumber>
+      <Linenumber>300</Linenumber>
     </Resource>
   </Task>
-  <Task priority="1" completed="False" type="1" uid="{5d70a90f-586f-4590-85f3-83fe648e50c2}">
+  <Task priority="1" completed="False" type="1" uid="{7fb89a13-945d-4714-84c6-67d21edba8d9}">
     <Summary>TODO: try if something other</Summary>
     <Description></Description>
-    <Created>2019-03-12, 20:27:52</Created>
+    <Created>2020-12-19, 22:34:02</Created>
     <Resource>
       <Filename>Show_datas.py</Filename>
-      <Linenumber>299</Linenumber>
-    </Resource>
-  </Task>
-  <Task priority="1" completed="False" type="1" uid="{541f309c-4048-4ea8-9da2-f6dae042f67a}">
-    <Summary>TODO: find something better. Uggly !!!!!! (Try re module).</Summary>
-    <Description></Description>
-    <Created>2019-03-12, 20:27:52</Created>
-    <Resource>
-      <Filename>Show_datas.py</Filename>
-      <Linenumber>295</Linenumber>
-    </Resource>
-  </Task>
-  <Task priority="1" completed="False" type="1" uid="{2da818f8-166f-4a61-8156-703599ecf484}">
-    <Summary>TODO: try if something other</Summary>
-    <Description></Description>
-    <Created>2019-03-12, 20:27:52</Created>
-    <Resource>
-      <Filename>Show_datas.py</Filename>
-      <Linenumber>299</Linenumber>
+      <Linenumber>304</Linenumber>
     </Resource>
   </Task>
 </Tasks>

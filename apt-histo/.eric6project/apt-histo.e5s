@@ -1,20 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE Session SYSTEM "Session-5.0.dtd">
+<!DOCTYPE Session SYSTEM "Session-6.2.dtd">
 <!-- eric6 session file for project apt-histo -->
 <!-- This file was generated automatically, do not edit. -->
-<!-- Saved: 2019-03-12, 20:48:38 -->
-<Session version="5.0">
+<!-- Saved: 2020-12-19, 22:36:34 -->
+<Session version="6.2">
+  <ViewManagerSplits count="1" orientation="2"/>
   <Filenames>
-    <Filename cline="0" cindex="0" folds="" zoom="0">/home/will/data/programmation/python/apt-histo/apt-histo/apt-histo.py</Filename>
-    <Filename cline="0" cindex="0" folds="" zoom="0">/home/will/data/programmation/python/apt-histo/apt-histo/Show_datas.py</Filename>
-    <Filename cline="3" cindex="0" folds="" zoom="0">/home/will/data/programmation/python/apt-histo/apt-histo/Read_histo.py</Filename>
-    <Filename cline="24" cindex="8" folds="" zoom="0">/home/will/data/programmation/python/apt-histo/apt-histo/README.md</Filename>
+    <Filename cline="98" cindex="15" folds="" zoom="0" cloned="0" splitindex="0" editorindex="0">/home/will/data/programmation/python/apt-histo/apt-histo/apt-histo.py</Filename>
+    <Filename cline="321" cindex="30" folds="" zoom="0" cloned="0" splitindex="0" editorindex="1">/home/will/data/programmation/python/apt-histo/apt-histo/Show_datas.py</Filename>
+    <Filename cline="49" cindex="0" folds="" zoom="0" cloned="0" splitindex="0" editorindex="2">/home/will/data/programmation/python/apt-histo/apt-histo/Read_histo.py</Filename>
+    <Filename cline="8" cindex="157" folds="" zoom="0" cloned="0" splitindex="0" editorindex="3">/home/will/data/programmation/python/apt-histo/apt-histo/README.md</Filename>
+    <Filename cline="31" cindex="29" folds="" zoom="0" cloned="0" splitindex="0" editorindex="4">/home/will/data/programmation/python/apt-histo/apt-histo/CHANGELOG.md</Filename>
+    <Filename cline="0" cindex="11" folds="" zoom="0" cloned="0" splitindex="0" editorindex="5">/home/will/data/programmation/python/apt-histo/apt-histo/VERSION</Filename>
   </Filenames>
-  <ActiveWindow cline="24" cindex="8">/home/will/data/programmation/python/apt-histo/apt-histo/README.md</ActiveWindow>
+  <ActiveWindow cline="31" cindex="29">/home/will/data/programmation/python/apt-histo/apt-histo/CHANGELOG.md</ActiveWindow>
   <Breakpoints/>
   <Watchexpressions/>
   <DebugInfo>
-    <CommandLine></CommandLine>
+    <VirtualEnv></VirtualEnv>
+    <CommandLine>-n</CommandLine>
     <WorkingDirectory></WorkingDirectory>
     <Environment></Environment>
     <ReportExceptions value="True"/>
@@ -27,11 +31,19 @@
   </DebugInfo>
   <Bookmarks/>
   <ProjectBrowserStates>
-    <ProjectBrowserState name="sources"/>
+    <ProjectBrowserState name="sources">
+      <ExpandedItemName>/home/will/data/programmation/python/apt-histo/apt-histo/Read_histo.py</ExpandedItemName>
+      <ExpandedItemName>/home/will/data/programmation/python/apt-histo/apt-histo/Read_histo.py@@17</ExpandedItemName>
+      <ExpandedItemName>/home/will/data/programmation/python/apt-histo/apt-histo/Show_datas.py</ExpandedItemName>
+      <ExpandedItemName>/home/will/data/programmation/python/apt-histo/apt-histo/Show_datas.py@@15</ExpandedItemName>
+      <ExpandedItemName>/home/will/data/programmation/python/apt-histo/apt-histo/VERSION</ExpandedItemName>
+      <ExpandedItemName>/home/will/data/programmation/python/apt-histo/apt-histo/apt-histo.py</ExpandedItemName>
+    </ProjectBrowserState>
     <ProjectBrowserState name="forms"/>
     <ProjectBrowserState name="resources"/>
     <ProjectBrowserState name="translations"/>
     <ProjectBrowserState name="interfaces"/>
+    <ProjectBrowserState name="protocols"/>
     <ProjectBrowserState name="others"/>
   </ProjectBrowserStates>
 </Session>
